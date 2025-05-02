@@ -18,22 +18,49 @@ export default defineConfigWithVueTs(
     files: ['**/*.{ts,mts,tsx,vue}'],
   },
 
-  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
+  globalIgnores([
+    '**/dist/**',
+    '**/dist-ssr/**',
+    '**/coverage/**',
+    'node_modules/',
+    'build/',
+    'public/',
+    '**/src/assets/libs/@iconscout/**',
+    '*.min.js',
+    '*.config.js',
+  ]),
 
   pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,
-  
+
+  {
+    name: 'vue-rules',
+    files: ['**/*.vue'],
+    rules: {
+      'vue/no-unused-vars': 'warn',
+      'vue/script-indent': ['error', 2, { baseIndent: 1 }],
+    },
+  },
+
+  {
+    name: 'custom-js-ts-rules',
+    rules: {
+      'linebreak-style': ['error', 'unix'],
+      quotes: ['error', 'single', { avoidEscape: true }],
+      semi: ['error', 'always'],
+      'max-len': ['warn', 120],
+      '@typescript-eslint/no-explicit-any': 'off',
+    },
+  },
+
   {
     ...pluginVitest.configs.recommended,
     files: ['src/**/__tests__/*'],
   },
-  
+
   {
     ...pluginCypress.configs.recommended,
-    files: [
-      'cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}',
-      'cypress/support/**/*.{js,ts,jsx,tsx}'
-    ],
+    files: ['cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}', 'cypress/support/**/*.{js,ts,jsx,tsx}'],
   },
   skipFormatting,
 )
