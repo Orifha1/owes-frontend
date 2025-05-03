@@ -1,9 +1,23 @@
 <script setup lang="ts">
+
+import NavBar from './components/NavBar.vue';
+import SideBar from './components/SideBar.vue'
 </script>
 
 <template>
-  <h1>Hello</h1>
-  <RouterView />
+
+
+  <NavBar />
+  <div class="content">
+    <SideBar />
+    <RouterView />
+  </div>
+
+
 </template>
 
-<style scoped></style>
+<style scoped>
+.content {
+  display: flex;
+}
+</style>
