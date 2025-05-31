@@ -2,13 +2,21 @@
 </script>
 
 <template>
-    <header>
-        <h1>Hello</h1>
-
-        <nav>
-
-        </nav>
+    <header class="header">
+        <h1>navbar</h1>
+        <img src="" alt="logo">
+        <form action="" class="search">
+            <input type="text" class="search__input" placeholder="Search transactions">
+            <button class="search__button"></button>
+        </form>
     </header>
 </template>
 
-<style scoped></style>
+<style scoped>
+.header {
+    display: flex;
+    height: 7rem;
+    background-color: #fff;
+    border-bottom: var(--color-grey-light-2);
+}
+</style>
